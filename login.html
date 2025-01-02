@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login dengan Facebook</title>
+</head>
+<body>
+    <h1>Login dengan Facebook</h1>
+    <button id="loginBtn">Login dengan Facebook</button>
+    <div id="status"></div>
+
+    <!-- Load Facebook SDK -->
+    <script async defer crossorigin="anonymous" 
+        src="https://connect.facebook.net/id_ID/sdk.js"></script>
+
+    <script>
+        // Konfigurasi SDK Facebook
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1111761309957214', // Ganti dengan App ID Anda
+                cookie     : true, // Aktifkan cookie untuk otentikasi server
+                xfbml      : true, // Aktifkan parsing XFBML
+                version    : 'v17.0' // Versi Graph API
+            });
+        };
+
+        // Fungsi login
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            FB.login(function(response) {
+                if (response.status === 'connected') {
+                    // Login berhasil, ambil data pengguna
+                    FB.api('/me', {fields: 'id,name,email'}, function(user) {
+                        document.getElementById('status').innerHTML = 
+                            `<p>Halo, ${user.name}!</p>
+                             <p>Email: ${user.email}</p>`;
+                    });
+                } else {
+                    // Pengguna membatalkan login
+                    document.getElementById('status').innerHTML = 
+                        `<p>Login dibatalkan atau gagal.</p>`;
+                }
+            }, {scope: 'email'});
+        });
+    </script>
+</body>
+</html>
