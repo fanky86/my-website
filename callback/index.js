@@ -4,9 +4,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Gantilah dengan ID aplikasi Facebook Anda
-const FACEBOOK_APP_ID = '560318786720318'; 
+const FACEBOOK_APP_ID = '564471992863258'; 
 // URL callback yang sudah Anda tentukan di Facebook Developer Console
-const REDIRECT_URI = 'https://callbackmain.vercel.app/callback'; 
+const REDIRECT_URI = 'https://fankyxd.xyz/callback'; 
 
 // 1. Endpoint untuk mengarahkan pengguna ke Facebook Login
 app.get('/login', (req, res) => {
